@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ঈদের অগ্রিম সেলামি - অন্তর</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5f7 0%, #fee2e2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(225, 29, 72, 0.1);
+            text-align: center;
+            border: 2px solid #fff1f2;
+        }
+
+        .emoji-float {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #e11d48;
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .eid-wish {
+            color: #059669;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .instruction-text {
+            margin-bottom: 25px; 
+            color: #4b5563; 
+            font-size: 17px;
+            line-height: 1.4;
+        }
+
+        /* বিকাশ বাটন */
+        .bkash-trigger {
+            background: #e2136e;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            text-decoration: none;
+            border: none;
+            width: 100%;
+        }
+
+        .bkash-logo {
+            width: 120px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* নাম্বার সেকশন (শুরুতে লুকানো) */
+        #number-display {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: #fff1f2;
+            border-radius: 20px;
+            border: 2px dashed #e11d48;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phone-number {
+            font-size: 30px;
+            font-weight: bold;
+            color: #e2136e;
+            margin: 15px 0;
+            display: block;
+        }
+
+        .copy-btn {
+            background: #059669;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .success-btn {
+            margin-top: 20px;
+            background: #e11d48;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="main-content">
+            <div class="emoji-float">💝</div>
+            <h1>আমি আপনার অতি পরিচিত প্রিয় অন্তর 💝</h1>
+            
+            <p class="instruction-text">আমাকে ইদের অগ্রিম সালামি দিতে নিচের বিকাশ আইকন টি তে ক্লিক করুন।</p>
+            
+            <div class="eid-wish">ইদ মোবারক 💝</div>
+
+            <button class="bkash-trigger" onclick="showNextStep()">
+                <img src="https://www.logo.wine/a/logo/BKash/BKash-Logo.wine.svg" alt="bKash" class="bkash-logo">
+                <p style="margin-top: 10px; font-weight: bold;">বিকাশ করতে এখানে ক্লিক করুন</p>
+            </button>
+        </div>
+
+        <div id="number-display">
+            <h2 style="color: #e2136e; font-size: 20px;">সেন্ড মানি করুন</h2>
+            <p style="color: #4b5563; margin-top: 10px;">নিচের নাম্বারটি কপি করে বিকাশ অ্যাপে গিয়ে সেলামি পাঠান</p>
+            
+            <span class="phone-number" id="target-num">01878300912</span>
+            
+            <button class="copy-btn" onclick="copyNumber()">নাম্বার কপি করুন</button>
+            
+            <div style="margin-top: 25px; border-top: 1px solid #fecaca; padding-top: 15px;">
+                <p style="font-size: 14px; color: #6b7280; margin-bottom: 10px;">টাকা পাঠানো শেষ হলে ক্লিক করুন:</p>
+                <button class="success-btn" onclick="celebrate()">টাকা পাঠিয়েছি ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        function showNextStep() {
+            // ১. ফ্রন্ট পেজ হাইড করে দেবে
+            document.getElementById('main-content').classList.add('hidden');
+            
+            // ২. নাম্বার সেকশন দেখাবে
+            const numBox = document.getElementById('number-display');
+            numBox.style.display = 'block';
+            
+            // ৩. বিকাশ অ্যাপ ওপেন করার চেষ্টা করবে
+            setTimeout(() => {
+                window.location.href = "bkash://";
+            }, 300);
+        }
+
+        function copyNumber() {
+            const num = "01878300912";
+            navigator.clipboard.writeText(num).then(() => {
+                alert("নাম্বার কপি হয়েছে! এবার বিকাশ অ্যাপে গিয়ে সেলামি পাঠান।");
+            });
+        }
+
+        function celebrate() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+            setTimeout(() => {
+                alert("মাশাআল্লাহ! আপনার দোয়া ও সেলামি দুই-ই গ্রহণ করা হলো। ইদ মোবারক!");
+            }, 500);
+        }
+    </script>
+</body>
+</html>
